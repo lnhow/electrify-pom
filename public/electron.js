@@ -6,13 +6,15 @@ const isDev = !app.isPackaged
 function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 400,
+    height: 200,
     webPreferences: {
       contextIsolation: true,
       preload: path.join(__dirname, '/preload.js')
     },
   })
+  win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true })
+  win.setAlwaysOnTop(true, "floating")
 
   ipcMain.on('focus-top', () => {
     // let alwaysOnTopLevel = "normal";
@@ -26,13 +28,11 @@ function createWindow() {
     }
     win.on('show', () => {
       setTimeout(() => {
-        win.setAlwaysOnTop(false, "floating")
+        // win.setAlwaysOnTop(false, "floating")
         // win.setVisibleOnAllWorkspaces(false, { visibleOnFullScreen: false })
         win.focus()
       }, 200);
     })
-    // win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true })
-    win.setAlwaysOnTop(true, "floating")
     win.show()
   })
 

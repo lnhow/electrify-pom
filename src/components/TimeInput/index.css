@@ -36,3 +36,18 @@
 .input:last-child {
   margin-right: 0;
 }
+
+.btn-timer {
+  all: unset;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 8px;
+  text-align: center;
+  text-transform: capitalize;
+  transition: all 0.2s ease-in-out;
+  background-color: #222;
+  border: 2px #fff solid;
+}
+.btn-timer:active, .btn-timer:hover, .btn-timer:focus {
+  border: 2px purple solid;
+}

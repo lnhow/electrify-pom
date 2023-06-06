@@ -1,6 +1,6 @@
 {
   "name": "electrify-pom",
-  "version": "0.1.0",
+  "version": "0.1.230606-2140",
   "main": "public/electron.js",
   "homepage": "./",
   "private": true,

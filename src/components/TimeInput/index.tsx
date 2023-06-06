@@ -58,7 +58,7 @@ export default function TimeInput(props: { defaultValues: TimerFormValues, onSub
           {...register('seconds', { min: 0, max: 59 })}
         />
       </div>
-      <button type="submit">Start timer</button>
+      <button className='btn-timer' type="submit">Start timer</button>
     </form>
   )
 }

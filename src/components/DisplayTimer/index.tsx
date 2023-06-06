@@ -89,7 +89,7 @@ export default function DisplayTimer(props: { timerValues: TimerFormValues, onSt
           readOnly
         />
       </div>
-      <button type="button" onClick={handleStopTimer}>Reset timer</button>
+      <button className='btn-timer' type="button" onClick={handleStopTimer}>Reset timer</button>
     </form>
   )
 }
