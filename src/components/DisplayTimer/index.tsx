@@ -1,7 +1,7 @@
 import './index.css'
 import { TimerFormValues } from '../TimeInput'
 import { useCallback, useEffect, useRef, useState } from 'react'
-// import { ipcRenderer } from 'electron'
+import { Electron } from '../../common/electron'
 
 const ONE_SECOND = 1000 //ms
 
@@ -27,7 +27,7 @@ export default function DisplayTimer(props: { timerValues: TimerFormValues, onSt
     if (newTimeout < 0) {
       clearInterval(intervalRef.current)
       setTimerDone(true)
-      // ipcRenderer.send('focus-top')
+      Electron.focusTop()
       return
     }
     processRemainingTime(newTimeout)

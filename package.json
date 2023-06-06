@@ -2,6 +2,7 @@
   "name": "electrify-pom",
   "version": "0.1.0",
   "main": "public/electron.js",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -11,7 +12,6 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "electron": "^25.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.44.3",
@@ -35,8 +35,15 @@
   },
   "build": {
     "mac": {
+      "target": {
+        "target": "default",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      },
       "publish": {
-        "provider": "electrify",
+        "provider": "github",
         "owner": "Hao Le",
         "repo": "electrify-pom",
         "private": true,
@@ -45,7 +52,7 @@
     },
     "win": {
       "publish": {
-        "provider": "electrify",
+        "provider": "github",
         "owner": "Hao Le",
         "repo": "electrify-pom",
         "private": true,
@@ -57,7 +64,7 @@
       "node_modules/**/*"
     ],
     "publish": {
-      "provider": "electrify",
+      "provider": "github",
       "private": true,
       "owner": "Hao Le"
     }
@@ -81,7 +88,9 @@
     ]
   },
   "devDependencies": {
+    "electron": "^25.0.1",
     "concurrently": "^8.1.0",
+    "electron-builder": "^23.6.0",
     "run-script-os": "^1.1.6",
     "wait-on": "^7.0.1"
   }

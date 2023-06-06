@@ -9,13 +9,26 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: true,
+      preload: path.join(app.getAppPath(), './public/preload.js')
     },
   })
 
-  // and load the index.html of the app.
-  // win.loadFile("index.html");
+  ipcMain.on('focus-top', () => {
+    console.log('focus-top')
+    if (win.isMinimized()) {
+      win.restore()
+    }
+    win.on('show', () => {
+      setTimeout(() => {
+        win.setAlwaysOnTop(false)
+        win.focus()
+      }, 200);
+    })
+    win.setAlwaysOnTop(true)
+    win.show()
+  })
+
   win.loadURL(
     isDev
       ? 'http://localhost:12001'
@@ -25,9 +38,6 @@ function createWindow() {
   if (isDev) {
     win.webContents.openDevTools({ mode: 'detach' })
   }
-  ipcMain.on('focus-top', () => {
-    win.focus({ steal: true, })
-  })
 }
 
 app.whenReady().then(() => {
@@ -39,6 +49,7 @@ app.whenReady().then(() => {
     }
   })
 })
+
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
