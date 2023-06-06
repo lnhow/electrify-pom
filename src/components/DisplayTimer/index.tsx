@@ -23,7 +23,7 @@ export default function DisplayTimer(props: { timerValues: TimerFormValues, onSt
   }, [])
   const handleIntervalUpdate = useCallback(() => {
     const newTimeout = currentTimeout.current - 1
-    console.log(newTimeout)
+    // console.log(newTimeout)
     if (newTimeout < 0) {
       clearInterval(intervalRef.current)
       setTimerDone(true)
@@ -41,7 +41,7 @@ export default function DisplayTimer(props: { timerValues: TimerFormValues, onSt
 
   useEffect(() => {
     const { hours, minutes, seconds} = props.timerValues
-    console.log('[Dev Log] -> file: index.tsx:40 -> useEffect -> timerValues:', props.timerValues)
+    // console.log('[Dev Log] -> file: index.tsx:40 -> useEffect -> timerValues:', props.timerValues)
     const timeoutSeconds = ((+hours * 60 + minutes) * 60 + seconds)
     currentTimeout.current = timeoutSeconds
     if (intervalRef.current) {
