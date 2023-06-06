@@ -1,6 +1,6 @@
 {
   "name": "electrify-pom",
-  "version": "0.1.230606-2140",
+  "version": "0.1.230606-2200",
   "main": "public/electron.js",
   "homepage": "./",
   "private": true,
@@ -38,7 +38,6 @@
       "target": {
         "target": "default",
         "arch": [
-          "x64",
           "arm64"
         ]
       },
@@ -60,8 +59,7 @@
       }
     },
     "files": [
-      "build/**/*",
-      "node_modules/**/*"
+      "build/**/*"
     ],
     "publish": {
       "provider": "github",

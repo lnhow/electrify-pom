@@ -13,26 +13,26 @@ function createWindow() {
       preload: path.join(__dirname, '/preload.js')
     },
   })
-  win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true })
-  win.setAlwaysOnTop(true, "floating")
 
   ipcMain.on('focus-top', () => {
-    // let alwaysOnTopLevel = "normal";
-    // // Mac OS requires a different level for our drag/drop and overlay
-    // // functionality to work as expected.
-    // if (process.platform === "darwin") {
-    //   alwaysOnTopLevel = "floating";
-    // }
+    let alwaysOnTopLevel = "normal";
+    // Mac OS requires a different level for our drag/drop and overlay
+    // functionality to work as expected.
+    if (process.platform === "darwin") {
+      alwaysOnTopLevel = "floating";
+    }
     if (win.isMinimized()) {
       win.restore()
     }
     win.on('show', () => {
       setTimeout(() => {
-        // win.setAlwaysOnTop(false, "floating")
+        win.setAlwaysOnTop(false, alwaysOnTopLevel)
         // win.setVisibleOnAllWorkspaces(false, { visibleOnFullScreen: false })
         win.focus()
       }, 200);
     })
+    // win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true })
+    win.setAlwaysOnTop(true, alwaysOnTopLevel)
     win.show()
   })
 
