@@ -1,0 +1,44 @@
+.form-timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.input-group {
+  display: flex;
+}
+
+.input {
+  all: unset;
+  margin: 8px;
+  padding: 8px 0 8px 8px;
+  min-height: 60px;
+  min-width: 80px;
+  flex: 1;
+  text-align: end;
+  border-radius: 8px;
+  background-color: #222;
+  border: 2px #212121 solid;
+  transition: all 0.2s ease-in-out;
+}
+.input.blink {
+  border: 2px red solid;
+  animation: blink 0.7s;
+  animation-iteration-count: infinite;
+}
+@keyframes blink {
+  50% { border-color:#fff ; }
+}
+
+.input:focus, .input:active .input:hover {
+  border: 2px purple solid;
+}
+.input:first-child {
+  margin-left: 0;
+}
+.input:last-child {
+  margin-right: 0;
+}
