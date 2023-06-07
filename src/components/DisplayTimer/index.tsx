@@ -36,6 +36,7 @@ export default function DisplayTimer(props: { timerValues: TimerFormValues, onSt
   const handleStopTimer = () => {
     clearInterval(intervalRef.current)
     setTimerDone(false)
+    Electron.setAlwaysOnTop(false)
     props.onStop()
   }
 

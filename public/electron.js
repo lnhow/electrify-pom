@@ -2,6 +2,12 @@ const path = require('path')
 
 const { app, BrowserWindow, ipcMain } = require('electron')
 const isDev = !app.isPackaged
+let alwaysOnTopLevel = "normal";
+// Mac OS requires a different level for our drag/drop and overlay
+// functionality to work as expected.
+if (process.platform === "darwin") {
+  alwaysOnTopLevel = "floating";
+}
 
 function createWindow() {
   // Create the browser window.
@@ -14,19 +20,13 @@ function createWindow() {
     },
   })
 
-  ipcMain.on('focus-top', () => {
-    let alwaysOnTopLevel = "normal";
-    // Mac OS requires a different level for our drag/drop and overlay
-    // functionality to work as expected.
-    if (process.platform === "darwin") {
-      alwaysOnTopLevel = "floating";
-    }
+  ipcMain.on('window:focus-top', () => {
     if (win.isMinimized()) {
       win.restore()
     }
     win.on('show', () => {
       setTimeout(() => {
-        win.setAlwaysOnTop(false, alwaysOnTopLevel)
+        // win.setAlwaysOnTop(false, alwaysOnTopLevel)
         // win.setVisibleOnAllWorkspaces(false, { visibleOnFullScreen: false })
         win.focus()
       }, 200);
@@ -34,6 +34,10 @@ function createWindow() {
     // win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true })
     win.setAlwaysOnTop(true, alwaysOnTopLevel)
     win.show()
+  })
+
+  ipcMain.on('window:always-on-top', (e, arg) => {
+    win.setAlwaysOnTop(arg, alwaysOnTopLevel)
   })
 
   win.loadURL(
